@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <title>Inventario</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Inventario">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Inventario</h1>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Cerca per codice..." aria-label="Cerca per codice" />
+      <select id="filterFinish" aria-label="Filtra per finitura">
+        <option value="">Tutte le finiture</option>
+        <option value="Finitura 01">Finitura 01</option><option value="Finitura 02">Finitura 02</option><option value="Finitura 03">Finitura 03</option><option value="Finitura 04">Finitura 04</option><option value="Finitura 05">Finitura 05</option><option value="Finitura 06">Finitura 06</option><option value="Finitura 07">Finitura 07</option><option value="Finitura 08">Finitura 08</option><option value="Finitura 09">Finitura 09</option><option value="Finitura 10">Finitura 10</option><option value="Finitura 11">Finitura 11</option><option value="Finitura 12">Finitura 12</option><option value="Finitura 13">Finitura 13</option><option value="Finitura 14">Finitura 14</option><option value="Finitura 15">Finitura 15</option><option value="Finitura 16">Finitura 16</option><option value="Finitura 17">Finitura 17</option><option value="Finitura 18">Finitura 18</option><option value="Finitura 19">Finitura 19</option><option value="Finitura 20">Finitura 20</option><option value="Finitura 21">Finitura 21</option><option value="Finitura 22">Finitura 22</option><option value="Finitura 23">Finitura 23</option><option value="Finitura 24">Finitura 24</option><option value="Finitura 25">Finitura 25</option><option value="Finitura 26">Finitura 26</option><option value="Finitura 27">Finitura 27</option><option value="Finitura 28">Finitura 28</option><option value="Finitura 29">Finitura 29</option><option value="Finitura 30">Finitura 30</option><option value="Finitura 31">Finitura 31</option><option value="Finitura 32">Finitura 32</option><option value="Finitura 33">Finitura 33</option><option value="Finitura 34">Finitura 34</option><option value="Finitura 35">Finitura 35</option><option value="Finitura 36">Finitura 36</option><option value="Finitura 37">Finitura 37</option><option value="Finitura 38">Finitura 38</option><option value="Finitura 39">Finitura 39</option><option value="Finitura 40">Finitura 40</option>
+      </select>
+      <select id="filterStatus" aria-label="Filtra stato">
+        <option value="">Tutti</option>
+        <option value="magazzino">In magazzino</option>
+        <option value="terzista">Fuori dai terzisti</option>
+      </select>
+      <button id="btnAdd">+ Aggiungi</button>
+      <button id="btnExport">Esporta</button>
+      <label class="import-label" for="fileImport">Importa</label>
+      <input id="fileImport" type="file" accept=".json,.csv" hidden />
+    </div>
+  </header>
+
+  <main>
+    <section id="formSection" class="card hidden" aria-live="polite">
+      <h2 id="formTitle">Nuovo articolo</h2>
+      <form id="itemForm">
+        <div class="grid">
+          <label>Codice articolo
+            <input name="code" id="code" required pattern="[^\s]{1,64}" />
+          </label>
+          <label>Descrizione
+            <input name="desc" id="desc" maxlength="120" />
+          </label>
+          <label>Finitura
+            <select name="finish" id="finish" required>
+              <option value="Finitura 01">Finitura 01</option><option value="Finitura 02">Finitura 02</option><option value="Finitura 03">Finitura 03</option><option value="Finitura 04">Finitura 04</option><option value="Finitura 05">Finitura 05</option><option value="Finitura 06">Finitura 06</option><option value="Finitura 07">Finitura 07</option><option value="Finitura 08">Finitura 08</option><option value="Finitura 09">Finitura 09</option><option value="Finitura 10">Finitura 10</option><option value="Finitura 11">Finitura 11</option><option value="Finitura 12">Finitura 12</option><option value="Finitura 13">Finitura 13</option><option value="Finitura 14">Finitura 14</option><option value="Finitura 15">Finitura 15</option><option value="Finitura 16">Finitura 16</option><option value="Finitura 17">Finitura 17</option><option value="Finitura 18">Finitura 18</option><option value="Finitura 19">Finitura 19</option><option value="Finitura 20">Finitura 20</option><option value="Finitura 21">Finitura 21</option><option value="Finitura 22">Finitura 22</option><option value="Finitura 23">Finitura 23</option><option value="Finitura 24">Finitura 24</option><option value="Finitura 25">Finitura 25</option><option value="Finitura 26">Finitura 26</option><option value="Finitura 27">Finitura 27</option><option value="Finitura 28">Finitura 28</option><option value="Finitura 29">Finitura 29</option><option value="Finitura 30">Finitura 30</option><option value="Finitura 31">Finitura 31</option><option value="Finitura 32">Finitura 32</option><option value="Finitura 33">Finitura 33</option><option value="Finitura 34">Finitura 34</option><option value="Finitura 35">Finitura 35</option><option value="Finitura 36">Finitura 36</option><option value="Finitura 37">Finitura 37</option><option value="Finitura 38">Finitura 38</option><option value="Finitura 39">Finitura 39</option><option value="Finitura 40">Finitura 40</option>
+            </select>
+          </label>
+          <label>Quantità
+            <input name="qty" id="qty" type="number" step="1" min="0" value="0" required />
+          </label>
+          <label>Stato
+            <select name="status" id="status" required>
+              <option value="magazzino">In magazzino</option>
+              <option value="terzista">Fuori dai terzisti</option>
+            </select>
+          </label>
+          <label>Note
+            <input name="note" id="note" maxlength="200" />
+          </label>
+        </div>
+        <div class="actions">
+          <button type="submit" id="saveBtn">Salva</button>
+          <button type="button" id="cancelBtn">Annulla</button>
+          <button type="button" id="deleteBtn" class="danger hidden">Elimina</button>
+        </div>
+        <input type="hidden" id="editId" />
+      </form>
+    </section>
+
+    <section class="card">
+      <details open>
+        <summary class="section-title">Articoli fuori dai terzisti <span id="countTerzisti" class="badge">0</span></summary>
+        <ul id="listTerzisti" class="item-list"></ul>
+      </details>
+    </section>
+
+    <section class="card">
+      <details open>
+        <summary class="section-title">In magazzino</summary>
+        <div id="finishesContainer">
+          
+          <details class="finish-block">
+            <summary>Finitura 01 <span class="badge" id="badge-Finitura-01">0</span></summary>
+            <ul id="list-Finitura-01" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 02 <span class="badge" id="badge-Finitura-02">0</span></summary>
+            <ul id="list-Finitura-02" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 03 <span class="badge" id="badge-Finitura-03">0</span></summary>
+            <ul id="list-Finitura-03" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 04 <span class="badge" id="badge-Finitura-04">0</span></summary>
+            <ul id="list-Finitura-04" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 05 <span class="badge" id="badge-Finitura-05">0</span></summary>
+            <ul id="list-Finitura-05" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 06 <span class="badge" id="badge-Finitura-06">0</span></summary>
+            <ul id="list-Finitura-06" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 07 <span class="badge" id="badge-Finitura-07">0</span></summary>
+            <ul id="list-Finitura-07" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 08 <span class="badge" id="badge-Finitura-08">0</span></summary>
+            <ul id="list-Finitura-08" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 09 <span class="badge" id="badge-Finitura-09">0</span></summary>
+            <ul id="list-Finitura-09" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 10 <span class="badge" id="badge-Finitura-10">0</span></summary>
+            <ul id="list-Finitura-10" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 11 <span class="badge" id="badge-Finitura-11">0</span></summary>
+            <ul id="list-Finitura-11" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 12 <span class="badge" id="badge-Finitura-12">0</span></summary>
+            <ul id="list-Finitura-12" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 13 <span class="badge" id="badge-Finitura-13">0</span></summary>
+            <ul id="list-Finitura-13" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 14 <span class="badge" id="badge-Finitura-14">0</span></summary>
+            <ul id="list-Finitura-14" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 15 <span class="badge" id="badge-Finitura-15">0</span></summary>
+            <ul id="list-Finitura-15" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 16 <span class="badge" id="badge-Finitura-16">0</span></summary>
+            <ul id="list-Finitura-16" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 17 <span class="badge" id="badge-Finitura-17">0</span></summary>
+            <ul id="list-Finitura-17" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 18 <span class="badge" id="badge-Finitura-18">0</span></summary>
+            <ul id="list-Finitura-18" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 19 <span class="badge" id="badge-Finitura-19">0</span></summary>
+            <ul id="list-Finitura-19" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 20 <span class="badge" id="badge-Finitura-20">0</span></summary>
+            <ul id="list-Finitura-20" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 21 <span class="badge" id="badge-Finitura-21">0</span></summary>
+            <ul id="list-Finitura-21" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 22 <span class="badge" id="badge-Finitura-22">0</span></summary>
+            <ul id="list-Finitura-22" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 23 <span class="badge" id="badge-Finitura-23">0</span></summary>
+            <ul id="list-Finitura-23" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 24 <span class="badge" id="badge-Finitura-24">0</span></summary>
+            <ul id="list-Finitura-24" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 25 <span class="badge" id="badge-Finitura-25">0</span></summary>
+            <ul id="list-Finitura-25" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 26 <span class="badge" id="badge-Finitura-26">0</span></summary>
+            <ul id="list-Finitura-26" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 27 <span class="badge" id="badge-Finitura-27">0</span></summary>
+            <ul id="list-Finitura-27" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 28 <span class="badge" id="badge-Finitura-28">0</span></summary>
+            <ul id="list-Finitura-28" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 29 <span class="badge" id="badge-Finitura-29">0</span></summary>
+            <ul id="list-Finitura-29" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 30 <span class="badge" id="badge-Finitura-30">0</span></summary>
+            <ul id="list-Finitura-30" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 31 <span class="badge" id="badge-Finitura-31">0</span></summary>
+            <ul id="list-Finitura-31" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 32 <span class="badge" id="badge-Finitura-32">0</span></summary>
+            <ul id="list-Finitura-32" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 33 <span class="badge" id="badge-Finitura-33">0</span></summary>
+            <ul id="list-Finitura-33" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 34 <span class="badge" id="badge-Finitura-34">0</span></summary>
+            <ul id="list-Finitura-34" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 35 <span class="badge" id="badge-Finitura-35">0</span></summary>
+            <ul id="list-Finitura-35" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 36 <span class="badge" id="badge-Finitura-36">0</span></summary>
+            <ul id="list-Finitura-36" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 37 <span class="badge" id="badge-Finitura-37">0</span></summary>
+            <ul id="list-Finitura-37" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 38 <span class="badge" id="badge-Finitura-38">0</span></summary>
+            <ul id="list-Finitura-38" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 39 <span class="badge" id="badge-Finitura-39">0</span></summary>
+            <ul id="list-Finitura-39" class="item-list"></ul>
+          </details>
+    
+          <details class="finish-block">
+            <summary>Finitura 40 <span class="badge" id="badge-Finitura-40">0</span></summary>
+            <ul id="list-Finitura-40" class="item-list"></ul>
+          </details>
+    
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <template id="itemTemplate">
+    <li class="item">
+      <div class="row">
+        <div class="main">
+          <div class="code"></div>
+          <div class="desc"></div>
+          <div class="meta">
+            <span class="chip finish"></span>
+            <span class="chip qty"></span>
+            <span class="chip status"></span>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="edit">Modifica</button>
+        </div>
+      </div>
+    </li>
+  </template>
+
+  <footer>
+    <small>Salvato in locale su questo dispositivo • Offline pronto</small>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('sw.js'); }
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+
+:root { --radius: 12px; --gap: 12px; --pad: 16px; --shadow: 0 8px 24px rgba(0,0,0,.08); --bg: #f6f7fb; --card: #fff; }
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; background: var(--bg); color:#111; font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,Arial,sans-serif; }
+header { position: sticky; top: 0; background: var(--bg); padding: var(--pad); border-bottom: 1px solid #eaeaea; z-index: 10; }
+h1 { margin: 0 0 8px 0; font-size: 20px; }
+.toolbar { display: grid; grid-template-columns: 1fr 160px 160px auto auto auto; gap: var(--gap); align-items: center; }
+.toolbar input[type="search"], .toolbar select { width: 100%; padding: 10px 12px; border:1px solid #ddd; border-radius: 10px; }
+.toolbar button, .import-label { padding: 10px 14px; border: none; background:#111; color:#fff; border-radius: 10px; cursor: pointer; text-align:center; }
+.import-label { display:inline-block; }
+main { padding: var(--pad); display: grid; gap: var(--gap); }
+.card { background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow); padding: var(--pad); }
+.hidden { display: none !important; }
+.grid { display: grid; gap: var(--gap); grid-template-columns: repeat(2, 1fr); }
+label { display: grid; gap: 6px; font-size: 14px; }
+input, select { padding: 10px 12px; border:1px solid #ddd; border-radius: 10px; }
+.actions { display: flex; gap: var(--gap); margin-top: 8px; }
+.actions .danger { background: #d64545; }
+.section-title { font-weight: 600; }
+.item-list { list-style:none; margin:0; padding:0; }
+.item { border:1px solid #eee; border-radius: 12px; padding: 12px; margin: 8px 0; background: #fff; }
+.item .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.item .code { font-weight: 700; }
+.item .desc { color:#555; font-size: 14px; margin-top: 2px; }
+.meta { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.chip { background:#f0f1f5; padding: 4px 8px; border-radius: 999px; font-size: 12px; }
+.badge { background:#111; color:#fff; padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+.finish-block summary { cursor: pointer; padding: 6px 0; }
+footer { text-align:center; color:#666; padding: 24px; }
+@media (max-width: 900px) {
+  .toolbar { grid-template-columns: 1fr auto auto auto; }
+  #filterFinish { display: none; }
+  #filterStatus { display: none; }
+}
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
