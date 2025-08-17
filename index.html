@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario QD</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <img src="https://www.qdrubinetterie.it/wp-content/uploads/2021/03/QD-colore.jpg" alt="Rubinetti QD" class="header-img">
+    <h1>Inventario QD Rubinetterie</h1>
+  </header>
+
+  <main>
+    <section id="form-section">
+      <h2>Aggiungi / Modifica Articolo</h2>
+      <form id="article-form">
+        <input type="hidden" id="edit-index" value="">
+        <label>Codice Articolo: <input type="text" id="code" required></label>
+        <label>Quantità: <input type="number" id="quantity" required></label>
+        <label>Colore:
+          <select id="color"></select>
+        </label>
+        <label><input type="checkbox" id="terzisti"> Fuori dai terzisti</label>
+        <button type="submit">Salva</button>
+      </form>
+    </section>
+
+    <section id="colors-section">
+      <h2>Gestione Colori</h2>
+      <form id="color-form">
+        <input type="text" id="new-color" placeholder="Nuovo colore">
+        <button type="submit">Aggiungi Colore</button>
+      </form>
+      <ul id="color-list"></ul>
+    </section>
+
+    <section id="inventory-section">
+      <h2>Inventario</h2>
+      <table id="inventory-table">
+        <thead>
+          <tr>
+            <th>Codice</th>
+            <th>Quantità</th>
+            <th>Colore</th>
+            <th>Terzisti</th>
+            <th>Azioni</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
